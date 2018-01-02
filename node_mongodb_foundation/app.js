@@ -32,6 +32,10 @@ mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
+app.get('/users', async (req, res, next) => {
+	return res.json(await User.find())
+})
+
 mongoose.connection.on('connected', (x) => {
 	console.log('mongoose connected successfully ', x)
 	User.find().then(x => console.log(x));
