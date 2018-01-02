@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/escalante29/nodeuniversity/issues"
   },
-  "homepage": "https://github.com/escalante29/nodeuniversity#readme"
+  "homepage": "https://github.com/escalante29/nodeuniversity#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
