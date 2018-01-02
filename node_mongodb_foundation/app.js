@@ -3,7 +3,7 @@ const express = require('express');
 const validator = require('validator');
 const app = express();
 const Schema = mongoose.Schema;
-const UserSchema = new Schema({
+const userSchema = new Schema({
 	email: {
 		type: String,
 		unique: true,
@@ -20,6 +20,7 @@ const UserSchema = new Schema({
 	resetPasswordToken: String,
 	resetPasswordExpires: Date
 });
+const User = mongoose.model('User', userSchema);
 
 
 const dbURI = 'mongodb://admin:mongo18@localhost:27017/site?authSource=admin';
@@ -30,6 +31,11 @@ mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
+
+mongoose.connection.on('connected', (x) => {
+	console.log('mongoose connected successfully ', x)
+	User.find().then(x => console.log(x));
+})
 
 // Start our app!
 const port =  process.env.PORT || 80;
