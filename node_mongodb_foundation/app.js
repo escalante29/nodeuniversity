@@ -1,7 +1,28 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const validator = require('validator');
 const app = express();
-const dbURI = 'mongodb://admin:mongo18@localhost:27017/users?authenticationDatabase=admin';
+const Schema = mongoose.Schema;
+const UserSchema = new Schema({
+	email: {
+		type: String,
+		unique: true,
+		lowercase: true,
+		trim: true,
+		validate: [validator.isEmail, 'Invalid Email Address'],
+		required: 'Please supply an email address'
+	},
+	name: {
+		type: String,
+		required: 'Please supply a name',
+		trim: true
+	},
+	resetPasswordToken: String,
+	resetPasswordExpires: Date
+});
+
+
+const dbURI = 'mongodb://admin:mongo18@localhost:27017/site?authenticationDatabase=admin';
 
 // Connect to our Database and handle an bad connections
 mongoose.connect(dbURI);
