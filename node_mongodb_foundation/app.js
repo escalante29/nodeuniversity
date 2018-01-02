@@ -22,7 +22,7 @@ const UserSchema = new Schema({
 });
 
 
-const dbURI = 'mongodb://admin:mongo18@localhost:27017/site?authenticationDatabase=admin';
+const dbURI = 'mongodb://admin:mongo18@localhost:27017/site?authSource=admin';
 
 // Connect to our Database and handle an bad connections
 mongoose.connect(dbURI);
