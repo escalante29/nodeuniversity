@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const app = require('express');
+const express = require('express');
+const app = express();
 const dbURI = 'mongodb://admin:mongo18@localhost:27017/users?authenticationDatabase=admin';
 
 // Connect to our Database and handle an bad connections
@@ -10,7 +11,6 @@ mongoose.connection.on('error', (err) => {
 });
 
 // Start our app!
-const app = require('./app');
 const port =  process.env.PORT || 80;
 console.log(`port set to: ${port}`);
 app.set('port', port);
